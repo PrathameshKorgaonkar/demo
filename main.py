@@ -18,7 +18,7 @@ def main():
     args = parser.parse_args()
     
     # Print the parameters
-    print(f"VERSION: {args.VERSION}")
+    print(f"\n\n\n\n\nVERSION: {args.VERSION}")
     print(f"CREDENTIALS: {args.CREDENTIALS}")
     print(f"SPACE_NAME: {args.SPACE_NAME}")
     print(f"SPACE_ID: {args.SPACE_ID}")
