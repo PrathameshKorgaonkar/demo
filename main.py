@@ -1,30 +1,32 @@
-def main(config):
-    # Extract values from the config dictionary
-    VERSION = config.get("VERSION")
-    CREDENTIALS = config.get("CREDENTIALS")
-    SPACE_NAME = config.get("SPACE_NAME")
-    SPACE_ID = config.get("SPACE_ID")
-    STORE_MODELS = config.get("STORE_MODELS")
-    STORE_IN = config.get("STORE_IN")
-    INCLUDE_FILTER = config.get("INCLUDE_FILTER")
-    PYTEST_MARKER = config.get("PYTEST_MARKER")
-    PARALLELISM_VALUE = config.get("PARALLELISM_VALUE")
+import argparse
  
-    # Print the values
-    print("VERSION:", VERSION)
-    print("CREDENTIALS:", CREDENTIALS)
-    print("SPACE_NAME:", SPACE_NAME)
-    print("SPACE_ID:", SPACE_ID)
-    print("STORE_MODELS:", STORE_MODELS)
-    print("STORE_IN:", STORE_IN)
-    print("INCLUDE_FILTER:", INCLUDE_FILTER)
-    print("PYTEST_MARKER:", PYTEST_MARKER)
-    print("PARALLELISM_VALUE:", PARALLELISM_VALUE)
+def main():
+    parser = argparse.ArgumentParser(description='Process some parameters.')
+    
+    # Define the arguments
+    parser.add_argument('--VERSION', type=str, help='Version')
+    parser.add_argument('--CREDENTIALS', type=str, help='Credentials')
+    parser.add_argument('--SPACE_NAME', type=str, help='Space Name')
+    parser.add_argument('--SPACE_ID', type=str, help='Space ID')
+    parser.add_argument('--STORE_MODELS', type=str, help='Store Models')
+    parser.add_argument('--STORE_IN', type=str, help='Store In')
+    parser.add_argument('--INCLUDE_FILTER', type=str, help='Include Filter')
+    parser.add_argument('--PYTEST_MARKER', type=str, help='Pytest Marker')
+    parser.add_argument('--PARALLELISM_VALUE', type=str, help='Parallelism Value')
+    
+    # Parse the arguments from the command line
+    args = parser.parse_args()
+    
+    # Print the parameters
+    print(f"VERSION: {args.VERSION}")
+    print(f"CREDENTIALS: {args.CREDENTIALS}")
+    print(f"SPACE_NAME: {args.SPACE_NAME}")
+    print(f"SPACE_ID: {args.SPACE_ID}")
+    print(f"STORE_MODELS: {args.STORE_MODELS}")
+    print(f"STORE_IN: {args.STORE_IN}")
+    print(f"INCLUDE_FILTER: {args.INCLUDE_FILTER}")
+    print(f"PYTEST_MARKER: {args.PYTEST_MARKER}")
+    print(f"PARALLELISM_VALUE: {args.PARALLELISM_VALUE}")
  
 if __name__ == "__main__":
-    import sys
-    # This allows the script to be run directly with a config dict
-    if len(sys.argv) > 1:
-        import ast
-        config = ast.literal_eval(sys.argv[1])
-        main(config)
+    main()
