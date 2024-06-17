@@ -24,8 +24,7 @@ try:
 
     if server.build_job(args.JOB_NAME, build_parameters):
         print(f"'{args.JOB_NAME}' triggered successfully.")
-    else:
-        print(f"'{args.JOB_NAME}' triggered failed.")
+        
 except jenkins.JenkinsException as e:
     print(f"Failed to connect to Jenkins Server.")
 except Exception as e:
