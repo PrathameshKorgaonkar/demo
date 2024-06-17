@@ -22,7 +22,7 @@ try:
         'PARALLELISM_VALUE': 'args.PARALLELISM_VALUE'
     }
 
-    if server.build_job(args.JOB_NAME, parameters):
+    if server.build_job(args.JOB_NAME, build_parameters):
         print(f"'{args.JOB_NAME}' triggered successfully.")
     else:
         print(f"'{args.JOB_NAME}' triggered failed.") 
