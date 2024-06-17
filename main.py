@@ -27,6 +27,6 @@ try:
     else:
         print(f"'{args.JOB_NAME}' triggered failed.")
 except jenkins.JenkinsException as e:
-    print(f"Failed to connect to Jenkins: {e}")
+    print(f"Failed to connect to Jenkins Server.")
 except Exception as e:
     print(f"An error occurred: {e}")
