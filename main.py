@@ -1,32 +1,32 @@
+import jenkins
 import argparse
- 
-def main():
-    parser = argparse.ArgumentParser(description='Process some parameters.')
-    
-    # Define the arguments
-    parser.add_argument('--VERSION', type=str, help='Version')
-    parser.add_argument('--CREDENTIALS', type=str, help='Credentials')
-    parser.add_argument('--SPACE_NAME', type=str, help='Space Name')
-    parser.add_argument('--SPACE_ID', type=str, help='Space ID')
-    parser.add_argument('--STORE_MODELS', type=str, help='Store Models')
-    parser.add_argument('--STORE_IN', type=str, help='Store In')
-    parser.add_argument('--INCLUDE_FILTER', type=str, help='Include Filter')
-    parser.add_argument('--PYTEST_MARKER', type=str, help='Pytest Marker')
-    parser.add_argument('--PARALLELISM_VALUE', type=str, help='Parallelism Value')
-    
-    # Parse the arguments from the command line
-    args = parser.parse_args()
-    
-    # Print the parameters
-    print(f"\n\n\n\n\nVERSION: {args.VERSION}")
-    print(f"CREDENTIALS: {args.CREDENTIALS}")
-    print(f"SPACE_NAME: {args.SPACE_NAME}")
-    print(f"SPACE_ID: {args.SPACE_ID}")
-    print(f"STORE_MODELS: {args.STORE_MODELS}")
-    print(f"STORE_IN: {args.STORE_IN}")
-    print(f"INCLUDE_FILTER: {args.INCLUDE_FILTER}")
-    print(f"PYTEST_MARKER: {args.PYTEST_MARKER}")
-    print(f"PARALLELISM_VALUE: {args.PARALLELISM_VALUE}")
- 
-if __name__ == "__main__":
-    main()
+
+parser = argparse.ArgumentParser()
+args_list = [ ('URL',), ('USERNAME',), ('PASSWORD',), ('JOB_NAME',), ('VERSION',), ('CREDENTIALS',), ('SPACE_NAME',), ('SPACE_ID',), ('STORE_MODELS',), ('STORE_IN',), ('INCLUDE_FILTER',), ('PYTEST_MARKER',), ('PARALLELISM_VALUE',)]
+for arg in args_list:
+    parser.add_argument(*arg)
+args = parser.parse_args()
+
+try:
+    server = jenkins.Jenkins(args.URL, username=args.USERNAME, password=args.PASSWORD)
+
+    build_parameters = {
+        'VERSION': 'args.VERSION',
+        'CREDENTIALS': 'args.CREDENTIALS',
+        'SPACE_NAME': 'args.SPACE_NAME',
+        'SPACE_ID': 'args.SPACE_ID',
+        'STORE_MODELS': 'args.STORE_MODELS',
+        'STORE_IN': 'args.STORE_IN',
+        'INCLUDE_FILTER': 'args.INCLUDE_FILTER',
+        'PYTEST_MARKER': 'args.PYTEST_MARKER',
+        'PARALLELISM_VALUE': 'args.PARALLELISM_VALUE'
+    }
+
+    if server.build_job(args.JOB_NAME, parameters):
+        print(f"'{args.JOB_NAME}' triggered successfully.")
+    else:
+        print(f"'{args.JOB_NAME}' triggered failed.") 
+except jenkins.JenkinsException as e:
+    print(f"Failed to connect to Jenkins: {e}")
+except Exception as e:
+    print(f"An error occurred: {e}")
