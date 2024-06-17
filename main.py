@@ -11,21 +11,21 @@ try:
     server = jenkins.Jenkins(args.URL, username=args.USERNAME, password=args.PASSWORD)
 
     build_parameters = {
-        'VERSION': 'args.VERSION',
-        'CREDENTIALS': 'args.CREDENTIALS',
-        'SPACE_NAME': 'args.SPACE_NAME',
-        'SPACE_ID': 'args.SPACE_ID',
-        'STORE_MODELS': 'args.STORE_MODELS',
-        'STORE_IN': 'args.STORE_IN',
-        'INCLUDE_FILTER': 'args.INCLUDE_FILTER',
-        'PYTEST_MARKER': 'args.PYTEST_MARKER',
-        'PARALLELISM_VALUE': 'args.PARALLELISM_VALUE'
+        'VERSION': args.VERSION,
+        'CREDENTIALS': args.CREDENTIALS,
+        'SPACE_NAME': args.SPACE_NAME,
+        'SPACE_ID': args.SPACE_ID,
+        'STORE_MODELS': args.STORE_MODELS,
+        'STORE_IN': args.STORE_IN,
+        'INCLUDE_FILTER': args.INCLUDE_FILTER,
+        'PYTEST_MARKER': args.PYTEST_MARKER,
+        'PARALLELISM_VALUE': args.PARALLELISM_VALUE
     }
 
     if server.build_job(args.JOB_NAME, build_parameters):
         print(f"'{args.JOB_NAME}' triggered successfully.")
     else:
-        print(f"'{args.JOB_NAME}' triggered failed.") 
+        print(f"'{args.JOB_NAME}' triggered failed.")
 except jenkins.JenkinsException as e:
     print(f"Failed to connect to Jenkins: {e}")
 except Exception as e:
