@@ -2,7 +2,7 @@ import jenkins
 import argparse
 
 parser = argparse.ArgumentParser()
-args_list = [ ('URL',), ('USERNAME',), ('PASSWORD',), ('JOB_NAME',), ('VERSION',), ('CREDENTIALS',), ('SPACE_NAME',), ('SPACE_ID',), ('STORE_MODELS',), ('STORE_IN',), ('INCLUDE_FILTER',), ('PYTEST_MARKER',), ('PARALLELISM_VALUE',)]
+args_list = [ ('--URL',), ('--USERNAME',), ('--PASSWORD',), ('--JOB_NAME',), ('--VERSION',), ('--CREDENTIALS',), ('--SPACE_NAME',), ('--SPACE_ID',), ('--STORE_MODELS',), ('--STORE_IN',), ('--INCLUDE_FILTER',), ('--PYTEST_MARKER',), ('--PARALLELISM_VALUE',)]
 for arg in args_list:
     parser.add_argument(*arg)
 args = parser.parse_args()
